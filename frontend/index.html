@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Service Booking</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar -->
+
+<nav class="navbar">
+    <div class ="logo">
+        <img src ="logo.jpeg" alt="ServiceApp logo">
+    </div>
+
+    <div class="nav-right">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+         <span id ="username" style="margin-left:10px; font-weight: bold;"></span>
+        
+        <a href="dashboard.html">My Bookings</a>
+        <a href="contact.html">Contact</a>
+
+        <!-- Notification -->
+<span class="material-icons icon" onclick="showNotification()">notifications</span>
+
+<!-- Dark Mode -->
+<span class="material-icons icon" onclick="toggleDarkMode()">dark_mode</span>
+
+<!-- Profile -->
+<span class="material-icons profile-icon" onclick="toggleDropdown()">account_circle</span>
+
+            <!-- Dropdown -->
+            <div class="dropdown" id="dropdownMenu">
+                <a href="register.html">My Account</a>
+                <a href="setting.html">Settings</a>
+                <a href="logout.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Book Trusted Home Services</h1>
+        <p>Electrician | Plumber | Cleaning | Carpenter</p>
+        <p class="description">
+            Get verified professionals at your doorstep with easy booking,transparent
+                 pricing, and top-rated services.
+        </p>
+        <div class="search-box">
+            <span class="material-icons">search</span>
+            <input type="text" id="search" placeholder="Search services...">
+            </div>
+            <button class="cta-btn">Book Now</button>
+        
+    </div>
+</section>
+
+<!-- Services -->
+<section class="services">
+    <section class ="services top-services scroll-animate"></section>
+    <h2>Top Services Near You</h2>
+<div class="services-wrapper">
+    <div class="cards">
+
+        <div class="card " data-name="electrician" onclick="showDetails('Electrician')">
+            <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=400">
+            <h3>Electrician</h3>
+        </div>
+
+        <div class="card" data-name="plumber" onclick="showDetails('Plumber')">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400">
+            <h3>Plumber</h3>
+        </div>
+
+        <div class="card" data-name="cleaning" onclick="showDetails('Cleaning')">
+            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400">
+            <h3>Cleaning</h3>
+        </div>
+
+        <div class="card" data-name="carpenter" onclick="showDetails('Carpenter')">
+            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400">
+            <h3>Carpenter</h3>
+        </div>
+</div>
+<div id="details-panel" class="details-panel">
+    <div class = "placeholder-text">
+        <p>Select a service to see details and pricing</p>
+    </div>
+</div>
+    </div>
+</section>
+
+<!-- Features -->
+<section class="features">
+    <h2>Why Choose Us</h2>
+
+    <div class="feature-box">
+        <div class="feature">
+            <span class="material-icons">verified</span>
+            <h3>Verified Professionals</h3>
+        </div>
+
+        <div class="feature">
+            <span class="material-icons">schedule</span>
+            <h3>On-Time Service</h3>
+        </div>
+
+        <div class="feature">
+            <span class="material-icons">star</span>
+            <h3>Top Rated</h3>
+        </div>
+    </div>
+</section>
+
+<script src="js/script.js">
+    
+const elements = document.querySelectorAll('.scroll-animate');
+
+function checkScroll() {
+    const triggerBottom = window.innerHeight * 0.85;
+
+    elements.forEach(el => {
+        const boxTop = el.getBoundingClientRect().top;
+
+        if (boxTop < triggerBottom) {
+            el.classList.add('show');
+        }
+    });
+}
+
+window.addEventListener('scroll', checkScroll);
+window.addEventListener('load', checkScroll);
+
+</script>
+</body>
+</html>

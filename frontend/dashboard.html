@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Bookings - ServiceApp</title>
+
+    <meta charset="UTF-8">
+
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar a {
+            text-decoration: none;
+            margin-left: 15px;
+            color: #333;
+        }
+
+        /* Container */
+        .container {
+            padding: 30px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background: #ddd;
+            margin-right: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .tab.active {
+            background: orange;
+            color: white;
+        }
+
+        /* Booking Card */
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeSlide 0.5s ease;
+        }
+
+        .info {
+            line-height: 1.5;
+        }
+
+        .status {
+            font-size: 12px;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+
+        .active-status {
+            background: #d4edda;
+            color: green;
+        }
+
+        .completed-status {
+            background: #e2e3e5;
+            color: gray;
+        }
+
+        /* Animation */
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <h2>ServiceApp</h2>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <span id ="username" style="margin-left:10px; font-weight: bold;"></span>
+        <span class ="material-icons profile-icon">account_circle</span>
+        <a href="contact.html">Contact</a>
+    </div>
+</div>
+
+<!-- Dashboard -->
+<div class="container">
+    <h1>My Bookings 📋</h1>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <div class="tab active" onclick="showTab('active')">Active</div>
+        <div class="tab" onclick="showTab('completed')">Completed</div>
+    </div>
+
+    <!-- Active Bookings -->
+    <div id="activeBookings">
+
+        <div class="card">
+            <div class="info">
+                <strong>Electrician Service</strong><br>
+                Rahul Sharma<br>
+                📍 Sector 22, Chandigarh<br>
+                📅 5 April, 10:00 AM
+            </div>
+            <div class="status active-status">Upcoming</div>
+        </div>
+
+        <div class="card">
+            <div class="info">
+                <strong>Cleaning Service</strong><br>
+                Pooja Verma<br>
+                📍 Sector 17, Chandigarh<br>
+                📅 6 April, 2:00 PM
+            </div>
+            <div class="status active-status">Scheduled</div>
+        </div>
+
+    </div>
+
+    <!-- Completed Bookings -->
+    <div id="completedBookings" style="display:none;">
+
+        <div class="card">
+            <div class="info">
+                <strong>Plumbing Service</strong><br>
+                Amit Kumar<br>
+                📍 Sector 35, Chandigarh<br>
+                📅 1 April, 12:00 PM
+            </div>
+            <div class="status completed-status">Completed</div>
+        </div>
+
+        <div class="card">
+            <div class="info">
+                <strong>Carpenter Service</strong><br>
+                Manoj Singh<br>
+                📍 Sector 45, Chandigarh<br>
+                📅 28 March, 4:00 PM
+            </div>
+            <div class="status completed-status">Done</div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+function showTab(type) {
+    let active = document.getElementById("activeBookings");
+    let completed = document.getElementById("completedBookings");
+
+    let tabs = document.querySelectorAll(".tab");
+
+    tabs.forEach(tab => tab.classList.remove("active"));
+
+    if (type === "active") {
+        active.style.display = "block";
+        completed.style.display = "none";
+        tabs[0].classList.add("active");
+    } else {
+        active.style.display = "none";
+        completed.style.display = "block";
+        tabs[1].classList.add("active");
+    }
+}
+//check login
+let user = localStorage.getItem("user");
+if(!user){
+    alert("Please login first");
+    window.location.href = "register.html"
+}
+fetch("../backend/get_bookings.php")
+.then(res=>res.json())
+.then(data=>{
+    console.log(data);
+});
+</script>
+
+</body>
+</html>

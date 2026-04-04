@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServiceApp - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+
+        .main-wrapper {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        /* LEFT COLUMN */
+        .left-side {
+            flex: 1.2;
+            background: white;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .left-side h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .left-side p {
+            color: #777;
+            margin-bottom: 40px;
+        }
+
+        .service-list {
+            list-style: none;
+        }
+
+        .service-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .service-item:hover {
+            background: #fff5e6;
+            border-color: #ff9800;
+            transform: translateX(10px);
+        }
+
+        .icon-circle {
+            width: 55px;
+            height: 55px;
+            background: white;
+            border: 2px solid #eee;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: #ff9800;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .service-text h3 { font-size: 1.1rem; color: #333; }
+        .service-text p { font-size: 0.85rem; color: #888; margin: 0; }
+
+        /* RIGHT COLUMN */
+        .right-side {
+            flex: 1;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
+                        url('https://images.unsplash.com/photo-1581578731548-c64695cc6958?auto=format&fit=crop&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            padding: 35px;
+            border-radius: 25px;
+            width: 100%;
+            max-width: 480px;
+            min-height: 400px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* PROVIDER LIST STYLING */
+        .provider-card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            animation: slideIn 0.4s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .provider-card img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+            border: 2px solid #ff9800;
+        }
+
+        .provider-info h4 { font-size: 1rem; color: #333; margin: 0; }
+        .provider-info p { font-size: 0.8rem; color: #666; margin: 2px 0; }
+
+        .book-btn {
+            margin-left: auto;
+            padding: 8px 16px;
+            background: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .book-btn:hover { background: #e68900; }
+
+        .placeholder-text {
+            text-align: center;
+            color: #555;
+            margin-top: 100px;
+        }
+
+        @media (max-width: 900px) {
+            .main-wrapper { flex-direction: column; }
+            .left-side { padding: 40px 20px; }
+            .right-side { min-height: 500px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <div class="left-side">
+            <h1>Our Services</h1>
+            <p>Select a service to find verified professionals near you in Chandigarh.</p>
+            
+            <div class="service-list">
+                <div class="service-item" onclick="loadProviders('Electrician')">
+                    <div class="icon-circle"><span class="material-icons">electrical_services</span></div>
+                    <div class="service-text">
+                        <h3>Electrician</h3>
+                        <p>Wiring, repairs, and installations.</p>
+                    </div>
+                </div>
+
+                <div class="service-item" onclick="loadProviders('Plumbing')">
+                    <div class="icon-circle"><span class="material-icons">plumbing</span></div>
+                    <div class="service-text">
+                        <h3>Plumbing</h3>
+                        <p>Pipe leaks and bathroom fittings.</p>
+                    </div>
+                </div>
+
+                <div class="service-item" onclick="loadProviders('Cleaning')">
+                    <div class="icon-circle"><span class="material-icons">cleaning_services</span></div>
+                    <div class="service-text">
+                        <h3>Cleaning</h3>
+                        <p>Deep house and sofa cleaning.</p>
+                    </div>
+                </div>
+
+                <div class="service-item" onclick="loadProviders('Carpenter')">
+                    <div class="icon-circle"><span class="material-icons">handyman</span></div>
+                    <div class="service-text">
+                        <h3>Carpenter</h3>
+                        <p>Furniture repair and woodwork.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-side">
+            <div class="glass-card" id="results-panel">
+                <div class="placeholder-text">
+                    <span class="material-icons" style="font-size: 50px; color: #ff9800;">location_on</span>
+                    <p style="margin-top: 10px;">Click a service on the left to see <br><strong>Available Service Providers</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Database of nearby providers
+        const data = {
+            'Electrician': [
+                { name: 'Rahul Sharma', rating: '4.5', reviews: '120', price: '300', img: 'https://randomuser.me/api/portraits/men/32.jpg' },
+                { name: 'Amit Kumar', rating: '4.2', reviews: '90', price: '250', img: 'https://randomuser.me/api/portraits/men/44.jpg' }
+            ],
+            'Plumbing': [
+                { name: 'Sandeep Singh', rating: '4.8', reviews: '210', price: '400', img: 'https://randomuser.me/api/portraits/men/65.jpg' }
+            ],
+            'Cleaning': [
+                { name: 'Pooja Devi', rating: '4.7', reviews: '85', price: '500', img: 'https://randomuser.me/api/portraits/women/44.jpg' }
+            ],
+            'Carpenter': [
+                { name: 'Vikram Mistri', rating: '4.6', reviews: '150', price: '350', img: 'https://randomuser.me/api/portraits/men/22.jpg' }
+            ]
+        };
+
+        function loadProviders(service) {
+            const panel = document.getElementById('results-panel');
+            let content = `<h2 style="margin-bottom: 20px; color: #333;">Nearby ${service}s</h2>`;
+            
+            if (data[service]) {
+                data[service].forEach((p, index) => {
+                    content += `
+                        <div class="provider-card" style="animation-delay: ${index * 0.1}s">
+                            <img src="${p.img}" alt="provider">
+                            <div class="provider-info">
+                                <h4>${p.name}</h4>
+                                <p>⭐ ${p.rating} | ${p.reviews} Reviews</p>
+                                <p><strong>₹${p.price} / visit</strong></p>
+                            </div>
+                            <a href="service-details.html?provider=${encodeURIComponent(p.name)}" style="text-decoration:none;">
+                                <button class ="book-btn">Book Now</a>
+                            
+                        </div>
+                    `;
+                });
+            }
+            
+            panel.innerHTML = content;
+        }
+    </script>
+</body>
+</html>

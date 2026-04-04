@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Settings - ServiceApp</title>
+
+    <meta charset="UTF-8">
+
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            position: absolute;
+            top: 0;
+            box-sizing: border-box;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            margin-left: 15px;
+            color: #333;
+        }
+
+        /* Container */
+        .container {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            flex: 1;
+            flex-direction: column;
+            
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        /* Box */
+        .settings-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            max-width: 500px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            animation: fadeSlide 0.6s ease;
+        }
+
+        /* Profile */
+        .profile-section {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .profile-section img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+        }
+
+        .profile-section input {
+            margin-top: 10px;
+        }
+
+        /* Input */
+        .input-box {
+            margin: 10px 0;
+        }
+
+        .input-box label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        /* Toggle */
+        .toggle {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .toggle input {
+            transform: scale(1.3);
+        }
+
+        /* Button */
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            width: 100%;
+            background: orange;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #ff6600;
+        }
+
+        .logout {
+            background: red;
+        }
+
+        .logout:hover {
+            background: darkred;
+        }
+ 
+        /* Animation */
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Dark Mode */
+        body.dark {
+            background: #121212;
+            color: white;
+        }
+
+        body.dark .settings-box {
+            background: #1e1e1e;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <h2>ServiceApp</h2>
+    <div>
+        <a href="index.html">Home</a>
+        
+        <a href="dashboard.html">My Bookings</a>
+        <a href="contact.html">Contact</a>
+         <span id ="username" style="margin-left:10px; font-weight: bold;"></span>
+        <span class ="material-icons profile-icon">account_circle</span>
+    </div>
+</div>
+
+<!-- Settings -->
+<div class="container">
+    <h1>Settings ⚙️</h1>
+
+    <div class="settings-box">
+
+        <!-- Profile Image -->
+        <div class="profile-section">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" id="profilePic">
+            <br>
+            <input type="file" onchange="changeImage(event)">
+        </div>
+
+        <!-- Info -->
+        <div class="input-box">
+            <label>Full Name</label>
+            <input type="text" placeholder="Enter your name">
+        </div>
+
+        <div class="input-box">
+            <label>Email</label>
+            <input type="email" placeholder="Enter your email">
+        </div>
+
+        <div class="input-box">
+            <label>Phone</label>
+            <input type="text" placeholder="Enter phone number">
+        </div>
+
+        <div class="input-box">
+            <label>Address 📍</label>
+            <input type="text" placeholder="Enter address">
+        </div>
+
+        <!-- Password -->
+        <div class="input-box">
+            <label>New Password</label>
+            <input type="password" id="pass">
+        </div>
+
+        <div class="input-box">
+            <label>Confirm Password</label>
+            <input type="password" id="confirm">
+        </div>
+
+        <!-- Toggles -->
+        <div class="toggle">
+            <span>Notifications 🔔</span>
+            <input type="checkbox" checked>
+        </div>
+
+        <div class="toggle">
+            <span>Dark Mode 🌙</span>
+            <input type="checkbox" onclick="toggleDarkMode()">
+        </div>
+
+        <!-- Buttons -->
+        <button onclick="saveSettings()">Save Changes</button>
+        <button class="logout" onclick="logout()">Logout</button>
+
+    </div>
+</div>
+
+<script>
+function saveSettings() {
+    let pass = document.getElementById("pass").value;
+    let confirm = document.getElementById("confirm").value;
+
+    if (pass !== "" && pass !== confirm) {
+        alert("Passwords do not match ❌");
+        return;
+    }
+
+    alert("Settings saved successfully ✅");
+}
+
+function logout() {
+    alert("Logged out 👋");
+    window.location.href = "logout.html";
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+}
+
+function changeImage(event) {
+    let reader = new FileReader();
+    reader.onload = function() {
+        document.getElementById("profilePic").src = reader.result;
+    }
+    reader.readAsDataURL(event.target.files[0]);
+}
+</script>
+
+</body>
+</html>

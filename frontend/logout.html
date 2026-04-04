@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logging Out...</title>
+
+    <meta charset="UTF-8">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            text-align: center;
+        }
+
+        .box {
+            background: rgba(255,255,255,0.2);
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            animation: fade 1s ease;
+        }
+
+        @keyframes fade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Logging you out... 👋</h2>
+    <p>Please wait...</p>
+</div>
+
+<script>
+    // Clear session (for now localStorage simulation)
+    localStorage.clear();
+
+    // Redirect to login after 2 seconds
+    setTimeout(() => {
+        window.location.href = "login.html";
+    }, 2000);
+    fetch("../backend/logout.php")
+.then(()=>{
+    localStorage.removeItem("user");
+    window.location.href="login.html";
+});
+</script>
+
+</body>
+</html>

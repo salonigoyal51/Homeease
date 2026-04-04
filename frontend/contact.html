@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Us - ServiceApp</title>
+
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('https://images.unsplash.com/photo-1521791136064-7986c2920216') no-repeat center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+        }
+
+        .navbar a {
+            color: white;
+            margin-left: 15px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            color: orange;
+        }
+
+        /* Contact Box */
+        .contact-box {
+            margin: auto;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 15px;
+            width: 350px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            animation: fadeSlide 1s ease;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        /* Inputs */
+        .input-box {
+            margin: 10px 0;
+        }
+
+        .input-box input,
+        .input-box textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+        }
+
+        textarea {
+            resize: none;
+            height: 80px;
+        }
+
+        /* Button */
+        button {
+            width: 100%;
+            padding: 12px;
+            background: orange;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #ff6600;
+        }
+
+        /* Animation */
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <h2>ServiceApp</h2>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</div>
+
+<!-- Contact Form -->
+<div class="contact-box">
+    <h2>Contact Us 📞</h2>
+    <p>We’d love to hear from you!</p>
+
+    <form onsubmit="return sendMessage()">
+
+        <div class="input-box">
+            <input type="text" id="name" placeholder="Your Name" required>
+        </div>
+
+        <div class="input-box">
+            <input type="email" id="email" placeholder="Your Email" required>
+        </div>
+
+        <div class="input-box">
+            <textarea id="message" placeholder="Your Message" required></textarea>
+        </div>
+
+        <button>Send Message</button>
+    </form>
+</div>
+
+<script>
+function sendMessage() {
+    alert("Message sent successfully 🎉");
+    return false; // prevents reload
+}
+fetch("../backend/contact.php", {
+    method:"POST",
+    body:new FormData(contactForm)
+})
+.then(()=>alert("Message sent ✅"));
+</script>
+
+</body>
+</html>
