@@ -2,6 +2,7 @@
 session_start();
 include "config.php";
 
+
 $user = $_SESSION['user'];
 $service = $_POST['service'];
 $date = $_POST['date'];
