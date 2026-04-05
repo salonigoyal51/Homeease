@@ -96,28 +96,137 @@
 </div>
     </div>
 </section>
+<!-- ABOUT SECTION -->
+<section style="padding:60px; text-align:center; background:#f9f9f9;">
+    
+    <h2>About Us</h2>
 
-<!-- Features -->
-<section class="features">
+    <p style="max-width:800px; margin:auto; line-height:1.7;">
+        Welcome to <b>ServiceApp</b>, your trusted platform for booking home services. 
+        We connect you with verified professionals to ensure quality, safety, and reliability.
+    </p>
+
+    <p style="max-width:800px; margin:20px auto; line-height:1.7;">
+        From electricians and plumbers to cleaning and carpentry, we make booking simple 
+        and fast with transparent pricing and real-time service tracking.
+    </p>
+
+    <p style="max-width:800px; margin:auto; line-height:1.7;">
+        Our mission is to make your life easier by delivering top-rated services at your doorstep.
+    </p>
+
+    <!-- SMALL FEATURES -->
+    <div style="margin-top:30px; display:flex; justify-content:center; gap:40px;">
+        <div>✔ Trusted Experts</div>
+        <div>⚡ Fast Booking</div>
+        <div>💰 Affordable Prices</div>
+    </div>
+
+</section>
+
+
+<!-- COUNTERS -->
+<section style="display:flex; justify-content:space-around; padding:40px; text-align:center;">
+    
+    <div>
+        <h2 class="count" data-target="5000">0</h2>
+        <p>Happy Customers</p>
+    </div>
+
+    <div>
+        <h2 class="count" data-target="1200">0</h2>
+        <p>Professionals</p>
+    </div>
+
+    <div>
+        <h2 class="count" data-target="3000">0</h2>
+        <p>Bookings</p>
+    </div>
+
+</section>
+
+
+<!-- WHY CHOOSE US -->
+<section style="padding:50px; text-align:center;">
     <h2>Why Choose Us</h2>
 
-    <div class="feature-box">
-        <div class="feature">
-            <span class="material-icons">verified</span>
-            <h3>Verified Professionals</h3>
-        </div>
-
-        <div class="feature">
-            <span class="material-icons">schedule</span>
-            <h3>On-Time Service</h3>
-        </div>
-
-        <div class="feature">
-            <span class="material-icons">star</span>
-            <h3>Top Rated</h3>
-        </div>
+    <div style="display:flex; justify-content:center; gap:40px; margin-top:30px;">
+        <div>✔ Verified Professionals</div>
+        <div>⏱ On-Time Service</div>
+        <div>⭐ Top Rated</div>
     </div>
 </section>
+
+
+<!-- FOOTER -->
+<footer style="background:#111; color:white; padding:40px;">
+
+    <div style="display:flex; justify-content:space-around; flex-wrap:wrap;">
+        
+        <div>
+            <h3>Company</h3>
+            <p>About Us</p>
+            <p>Careers</p>
+            <p>Terms & Conditions</p>
+        </div>
+
+        <div>
+            <h3>For Customers</h3>
+            <p>Services</p>
+            <p>Contact Us</p>
+        </div>
+
+        <div>
+            <h3>Support</h3>
+            <p>Help Center</p>
+            <p>Privacy Policy</p>
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- SCROLL BUTTON -->
+<button onclick="topFunction()" id="topBtn"
+style="position:fixed; bottom:20px; right:20px; padding:10px; display:none; background:orange; color:white; border:none; border-radius:50%;">
+↑
+</button>
+
+
+<!-- JAVASCRIPT -->
+<script>
+
+// COUNTER ANIMATION
+document.querySelectorAll('.count').forEach(counter => {
+    let update = () => {
+        let target = +counter.getAttribute('data-target');
+        let count = +counter.innerText;
+        let increment = target / 100;
+
+        if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(update, 20);
+        } else {
+            counter.innerText = target;
+        }
+    };
+    update();
+});
+
+// SCROLL BUTTON
+let btn = document.getElementById("topBtn");
+
+window.onscroll = function() {
+    btn.style.display = window.scrollY > 200 ? "block" : "none";
+};
+
+function topFunction() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+</script>
+
 
 <script src="js/script.js">
     
