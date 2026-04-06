@@ -52,73 +52,77 @@
 </nav>
 
 <!-- Contact Form -->
-<div class="contact-box">
-    <h2>Contact Us 📞</h2>
-    <p>We’d love to hear from you!</p>
+<div class="contact-section">
 
-    <form onsubmit="return sendMessage()">
+    <div class="contact-box">
+        <h2>Contact Us 📞</h2>
+        <p>We’d love to hear from you!</p>
 
-        <div class="input-box">
-            <input type="text" id="name" placeholder="Your Name" required>
-        </div>
+        <form id="contactForm">
+            <div class="input-box">
+                <input type="text" name="name" placeholder="Your Name" required>
+            </div>
 
-        <div class="input-box">
-            <input type="email" id="email" placeholder="Your Email" required>
-        </div>
+            <div class="input-box">
+                <input type="email" name="email" placeholder="Your Email" required>
+            </div>
 
-        <div class="input-box">
-            <textarea id="message" placeholder="Your Message" required></textarea>
-        </div>
+            <div class="input-box">
+                <textarea name="message" placeholder="Your Message" required></textarea>
+            </div>
 
-        <button>Send Message</button>
-    </form>
-</div>
-
-<footer style="background:#0a2540; color:white; padding:40px;">
-
-    <div style="display:flex; justify-content:space-around; flex-wrap:wrap;">
-        
-        <div>
-            <h3>Company</h3>
-            <p>About Us</p>
-            <p>Careers</p>
-            <p>Terms & Conditions</p>
-        </div>
-
-        <div>
-            <h3>For Customers</h3>
-            <p>Services</p>
-            <p>Contact Us</p>
-        </div>
-
-        <div>
-            <h3>Support</h3>
-            <p>Help Center</p>
-            <p>Privacy Policy</p>
-        </div>
-
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
     </div>
 
-</footer>
+</div>
 
-
-<!-- SCROLL BUTTON -->
 <button onclick="topFunction()" id="topBtn"
 style="position:fixed; bottom:20px; right:20px; padding:10px; display:none; background:orange; color:white; border:none; border-radius:50%;">
 ↑
 </button>
 
 <script>
-function sendMessage() {
-    alert("Message sent successfully 🎉");
-    return false; // prevents reload
+window.onscroll = function() {
+    let btn = document.getElementById("topBtn");
+    if (document.documentElement.scrollTop > 200) {
+        btn.style.display = "block";
+    } else {
+        btn.style.display = "none";
+    }
+};
+
+function topFunction() {
+    document.documentElement.scrollTop = 0;
 }
-fetch("../backend/contact.php", {
-    method:"POST",
-    body:new FormData(contactForm)
-})
-.then(()=>alert("Message sent ✅"));
 </script>
+
+
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let formData = new FormData(this);
+
+    fetch("../backend/contact.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert("Message sent successfully 🎉");
+        this.reset(); // form clear
+    })
+    .catch(error => {
+        alert("Error ❌");
+    });
+});
+</script>
+
+<!-- SCROLL BUTTON -->
+ 
+
 
 
 <script>
@@ -132,6 +136,31 @@ function toggleDropdown() {
 }
 </script>
 
+
+<footer class="footer">
+    <div class="footer-container">
+        
+        <div class="footer-box">
+            <h3>Company</h3>
+            <p>About Us</p>
+            <p>Careers</p>
+            <p>Terms & Conditions</p>
+        </div>
+
+        <div class="footer-box">
+            <h3>For Customers</h3>
+            <p>Services</p>
+            <p>Contact Us</p>
+        </div>
+
+        <div class="footer-box">
+            <h3>Support</h3>
+            <p>Help Center</p>
+            <p>Privacy Policy</p>
+        </div>
+
+    </div>
+</footer>
 
 
 
