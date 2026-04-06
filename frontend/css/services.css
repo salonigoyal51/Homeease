@@ -1,0 +1,197 @@
+/* Services Page */
+.services-page {
+    padding: 40px;
+}
+
+.provider-list {
+    margin-top: 20px;
+}
+
+/* Provider Card */
+.provider-card {
+    display: flex;
+    background: white;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    align-items: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.provider-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.provider-info {
+    margin-left: 20px;
+}
+
+.price {
+    color: green;
+    font-weight: bold;
+}
+
+/* Book Button */
+.book-btn {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background: #ff5200;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.book-btn:hover {
+    background: #e64a00;
+}
+#locationText {
+  margin-top: 10px;
+  color: gray;
+  font-size: 14px;
+}
+
+body{
+    padding-top: 70px;
+}
+.logo {
+    color: #ff5200;
+}
+/* Layout to put list and details side-by-side */
+.services-wrapper {
+    display: flex;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Make the cards list narrower to fit the detail panel */
+.cards {
+    flex: 1; /* Takes up 50% of the wrapper */
+    grid-template-columns: repeat(2, 1fr) !important; /* Force 2 columns instead of auto */
+}
+
+/* Style for the new Detail Panel on the right */
+.details-panel {
+    flex: 1; /* Takes up the other 50% */
+    background: white;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    height: fit-content;
+    position: sticky; /* Keeps it visible as you scroll through cards */
+    top: 20px;
+    text-align: left;
+}
+
+.details-panel h2 {
+    color: #ff5722; /* Your theme orange */
+    margin-bottom: 15px;
+}
+/* Location */
+.location {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Right menu */
+.nav-right a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.nav-right a:hover {
+    color: #ff5200;
+}
+
+/* Login button */
+.login-btn {
+    background: #ff5200;
+    color: white !important;
+    padding: 6px 12px;
+    border-radius: 5px;
+}
+
+/* Profile icon */
+.profile-icon {
+    margin-left: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+.profile-icon:hover{
+    color:#ff5200;
+}
+
+
+
+/* Icons */
+.icon {
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+/* Profile Dropdown */
+.profile {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 45px;
+    background: white;
+    min-width: 160px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    z-index: 9999;
+}
+
+.dropdown a {
+    display: block;
+    padding: 10px ;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown a:hover {
+    background: #f5f5f5;
+}
+
+/* Dark Mode */
+body.dark {
+    background: #121212;
+    color: white;
+}
+
+body.dark .navbar {
+    background: #1e1e1e;
+}
+
+body.dark .dropdown {
+    background: #2a2a2a;
+}
+
+
+
+/* Fix icons alignment */
+.icon, .profile-icon {
+    margin-left: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+
+.hero{
+    position: relative;
+    z-index: 1;
+}

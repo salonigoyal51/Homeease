@@ -2,7 +2,8 @@
 <html>
 <head>
     <title>Contact Us - ServiceApp</title>
-
+<link rel="stylesheet" href="css/contact.css">
+<link rel="stylesheet" href="css/style.css">
     <!-- Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -110,14 +111,38 @@
 <body>
 
 <!-- Navbar -->
-<div class="navbar">
-    <h2>ServiceApp</h2>
-    <div>
+<nav class="navbar">
+    <div class="logo">
+        <img src="pnglogo.png" alt="ServiceApp logo">
+        <h2>HomeEase</h2>
+    </div>
+
+    <!-- Hamburger -->
+    <div class="hamburger" onclick="toggleMenu()">
+        ☰
+    </div>
+
+    <div class="nav-right" id="navMenu">
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
+
+        <span id="username"></span>
+
+        <a href="dashboard.html">My Bookings</a>
         <a href="contact.html">Contact</a>
+
+        <span class="material-icons icon" onclick="showNotification()">notifications</span>
+        <span class="material-icons icon" onclick="toggleDarkMode()">dark_mode</span>
+
+        <span class="material-icons profile-icon" onclick="toggleDropdown()">account_circle</span>
+
+        <div class="dropdown" id="dropdownMenu">
+            <a href="register.html">My Account</a>
+            <a href="setting.html">Settings</a>
+            <a href="logout.html">Logout</a>
+        </div>
     </div>
-</div>
+</nav>
 
 <!-- Contact Form -->
 <div class="contact-box">

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Service Booking</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
     
     <!-- Google Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -13,37 +14,40 @@
 <!-- Navbar -->
 
 <nav class="navbar">
-    <div class ="logo" style="display: flex; align-items: center; gap: 4px; margin-left: -8px;">
-        <img src ="pnglogo.png" alt="ServiceApp logo" style="height: 42px;">
-        <h2 style="margin: 0; font-size:27px; color:#0a2540; font-weight:700; letter-spacing:0.5px";>HomeEase</h2>
+    <div class="logo">
+        <img src="pnglogo.png" alt="ServiceApp logo">
+        <h2>HomeEase</h2>
     </div>
 
-    <div class="nav-right">
+    <!-- Hamburger -->
+    <div class="hamburger" onclick="toggleMenu()">
+        ☰
+    </div>
+
+    <div class="nav-right" id="navMenu">
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
-         <span id ="username" style="margin-left:10px; font-weight: bold;"></span>
-        
+
+        <span id="username"></span>
+
         <a href="dashboard.html">My Bookings</a>
         <a href="contact.html">Contact</a>
 
-        <!-- Notification -->
-<span class="material-icons icon" onclick="showNotification()">notifications</span>
+        <span class="material-icons icon" onclick="showNotification()">notifications</span>
+        <span class="material-icons icon" onclick="toggleDarkMode()">dark_mode</span>
 
-<!-- Dark Mode -->
-<span class="material-icons icon" onclick="toggleDarkMode()">dark_mode</span>
+        <span class="material-icons profile-icon" onclick="toggleDropdown()">account_circle</span>
 
-<!-- Profile -->
-<span class="material-icons profile-icon" onclick="toggleDropdown()">account_circle</span>
-
-            <!-- Dropdown -->
-            <div class="dropdown" id="dropdownMenu">
-                <a href="register.html">My Account</a>
-                <a href="setting.html">Settings</a>
-                <a href="logout.html">Logout</a>
-            </div>
+        <div class="dropdown" id="dropdownMenu">
+            <a href="register.html">My Account</a>
+            <a href="setting.html">Settings</a>
+            <a href="logout.html">Logout</a>
         </div>
     </div>
 </nav>
+
+
+
 
 <!-- Hero Section -->
 <section class="hero">
@@ -228,6 +232,17 @@ function topFunction() {
 
 </script>
 
+<script>
+    function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("show");
+}
+
+function toggleDropdown() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+</script>
+
 
 <script src="js/script.js">
     
@@ -249,6 +264,8 @@ window.addEventListener('scroll', checkScroll);
 window.addEventListener('load', checkScroll);
 
 </script>
+
+
 
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
