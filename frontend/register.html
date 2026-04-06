@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register - ServiceApp</title>
+<link rel="stylesheet" href="css/register.css">
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('https://images.unsplash.com/photo-1581578731548-c64695cc6952') no-repeat center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Glass UI */
+        .register-box {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 15px;
+            width: 350px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+
+            animation: fadeSlide 1s ease;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 14px;
+        }
+
+        /* Input */
+        .input-box {
+            position: relative;
+            margin: 15px 0;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 10px 10px 10px 40px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            box-sizing: border-box;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .input-box span {
+            position: absolute;
+            left: 10px;
+            top: 8px;
+            color: gray;
+        }
+
+        /* Button */
+        button {
+            width: 100%;
+            padding: 12px;
+            background: orange;
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            background: #ff6600;
+        }
+
+        /* Links */
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animation */
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Error */
+        .error {
+            color: #ffcccc;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="register-box">
+    <h2>Create Account </h2>
+    <p>Join us & book trusted services</p>
+
+    <form onsubmit="return validateForm()">
+
+        <div class="input-box">
+            <span class="material-icons">person</span>
+            <input type="text" id="name" placeholder="Full Name" required>
+        </div>
+
+        <div class="input-box">
+            <span class="material-icons">email</span>
+            <input type="email" id="email" placeholder="Email" required>
+        </div>
+
+        <div class="input-box">
+            <span class="material-icons">lock</span>
+            <input type="password" id="password" placeholder="Password" required minlength="6">
+        </div>
+
+        <div class="input-box">
+            <span class="material-icons">lock</span>
+            <input type="password" id="confirm" placeholder="Confirm Password" required>
+        </div>
+
+        <div class="error" id="errorMsg"></div>
+
+        <button>Create Account</button>
+    </form>
+<div class="login-link">
+    <p>Already have an account? <a href="login.html" style="display: block;text-align: center;margin-top: 10px;">Login</a></p>
+    </div>
+</div>
+
+<script>
+
+document.getElementById("loginForm").onsubmit = function(e) {
+    e.preventDefault();
+
+    let formData = new FormData(this);
+
+    fetch("../backend/login.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === "success") {
+
+            // ✅ store login
+            localStorage.setItem("user", data.user);
+
+            window.location.href = "dashboard.html";
+
+        } else {
+            alert("Invalid credentials ❌");
+        }
+    });
+};
+fetch("../backend/login.php", {
+    method:"POST",
+    body:new FormData(loginForm)
+})
+.then(res=>res.json())
+.then(data=>{
+    if(data.status==="success"){
+        localStorage.setItem("user", data.user);
+        window.location.href="dashboard.html";
+    }
+});
+</script>
+
+</body>
+</html>

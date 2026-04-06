@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Service - ServiceApp</title>
+    <link rel="stylesheet" href="css/booking.css">
+    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar a {
+            text-decoration: none;
+            margin-left: 15px;
+            color: #333;
+        }
+
+        /* Container */
+        .container {
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        /* Form Box */
+        .booking-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            width: 400px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            animation: fade 0.5s ease;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .input-box {
+            margin: 10px 0;
+        }
+
+        .input-box label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-box input,
+        .input-box select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            background: orange;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #ff6600;
+        }
+
+        @keyframes fade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">
+        <img src="pnglogo.png" alt="ServiceApp logo">
+        <h2>HomeEase</h2>
+    </div>
+
+    <!-- Hamburger -->
+    <div class="hamburger" onclick="toggleMenu()">
+        ☰
+    </div>
+
+    <div class="nav-right" id="navMenu">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+
+        <span id="username"></span>
+
+        <a href="dashboard.html">My Bookings</a>
+        <a href="contact.html">Contact</a>
+
+        <span class="material-icons icon" onclick="showNotification()">notifications</span>
+        <span class="material-icons icon" onclick="toggleDarkMode()">dark_mode</span>
+
+        <span class="material-icons profile-icon" onclick="toggleDropdown()">account_circle</span>
+
+        <div class="dropdown" id="dropdownMenu">
+            <a href="register.html">My Account</a>
+            <a href="setting.html">Settings</a>
+            <a href="logout.html">Logout</a>
+        </div>
+    </div>
+</nav>
+<!-- Booking Form -->
+<div class="container">
+    <div class="booking-box">
+        <h2>Book a Service 🛠️</h2>
+
+        <form id="bookingForm">
+
+            <div class="input-box">
+                <label>Select Service</label>
+                <select name="service" required>
+                    <option value="">Choose service</option>
+                    <option>Electrician</option>
+                    <option>Plumber</option>
+                    <option>Cleaning</option>
+                    <option>Carpenter</option>
+                </select>
+            </div>
+
+            <div class="input-box">
+                <label>Date</label>
+                <input type="date" name="date" required>
+            </div>
+
+            <div class="input-box">
+                <label>Time</label>
+                <input type="time" name="time" required>
+            </div>
+
+            <div class="input-box">
+                <label>Address</label>
+                <input type="text" name="address" placeholder="Enter your address" required>
+            </div>
+
+            <button type="submit">Book Now</button>
+
+        </form>
+    </div>
+</div>
+
+
+<footer style="background:#0a2540; color:white; padding:40px;">
+
+    <div style="display:flex; justify-content:space-around; flex-wrap:wrap;">
+        
+        <div>
+            <h3>Company</h3>
+            <p>About Us</p>
+            <p>Careers</p>
+            <p>Terms & Conditions</p>
+        </div>
+
+        <div>
+            <h3>For Customers</h3>
+            <p>Services</p>
+            <p>Contact Us</p>
+        </div>
+
+        <div>
+            <h3>Support</h3>
+            <p>Help Center</p>
+            <p>Privacy Policy</p>
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- SCROLL BUTTON -->
+<button onclick="topFunction()" id="topBtn"
+style="position:fixed; bottom:20px; right:20px; padding:10px; display:none; background:orange; color:white; border:none; border-radius:50%;">
+↑
+</button>
+
+<script>
+
+// 🔐 Check login
+let user = localStorage.getItem("user");
+
+if (!user) {
+    alert("Please login first 🔐");
+    window.location.href = "login.html";
+}
+
+// 📦 Submit booking
+document.getElementById("bookingForm").onsubmit = function(e) {
+    e.preventDefault();
+
+    let formData = new FormData(this);
+
+    fetch("../backend/book_service.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.text())
+    .then(data => {
+        if (data === "success") {
+            alert("Booking successful ✅");
+            window.location.href = "dashboard.html";
+        } else {
+            alert("Error booking ❌");
+        }
+    });
+};
+
+</script>
+
+
+<script>
+    function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("show");
+}
+
+function toggleDropdown() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+</script>
+
+</body>
+</html>

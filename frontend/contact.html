@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Us - ServiceApp</title>
+<link rel="stylesheet" href="css/contact.css">
+<link rel="stylesheet" href="css/style.css">
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+
+    
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">
+        <img src="pnglogo.png" alt="ServiceApp logo">
+        <h2>HomeEase</h2>
+    </div>
+
+    <!-- Hamburger -->
+    <div class="hamburger" onclick="toggleMenu()">
+        ☰
+    </div>
+
+    <div class="nav-right" id="navMenu">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+
+        <span id="username"></span>
+
+        <a href="dashboard.html">My Bookings</a>
+        <a href="contact.html">Contact</a>
+
+        <span class="material-icons icon" onclick="showNotification()">notifications</span>
+        <span class="material-icons icon" onclick="toggleDarkMode()">dark_mode</span>
+
+        <span class="material-icons profile-icon" onclick="toggleDropdown()">account_circle</span>
+
+        <div class="dropdown" id="dropdownMenu">
+            <a href="register.html">My Account</a>
+            <a href="setting.html">Settings</a>
+            <a href="logout.html">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Contact Form -->
+<div class="contact-box">
+    <h2>Contact Us 📞</h2>
+    <p>We’d love to hear from you!</p>
+
+    <form onsubmit="return sendMessage()">
+
+        <div class="input-box">
+            <input type="text" id="name" placeholder="Your Name" required>
+        </div>
+
+        <div class="input-box">
+            <input type="email" id="email" placeholder="Your Email" required>
+        </div>
+
+        <div class="input-box">
+            <textarea id="message" placeholder="Your Message" required></textarea>
+        </div>
+
+        <button>Send Message</button>
+    </form>
+</div>
+
+<footer style="background:#0a2540; color:white; padding:40px;">
+
+    <div style="display:flex; justify-content:space-around; flex-wrap:wrap;">
+        
+        <div>
+            <h3>Company</h3>
+            <p>About Us</p>
+            <p>Careers</p>
+            <p>Terms & Conditions</p>
+        </div>
+
+        <div>
+            <h3>For Customers</h3>
+            <p>Services</p>
+            <p>Contact Us</p>
+        </div>
+
+        <div>
+            <h3>Support</h3>
+            <p>Help Center</p>
+            <p>Privacy Policy</p>
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- SCROLL BUTTON -->
+<button onclick="topFunction()" id="topBtn"
+style="position:fixed; bottom:20px; right:20px; padding:10px; display:none; background:orange; color:white; border:none; border-radius:50%;">
+↑
+</button>
+
+<script>
+function sendMessage() {
+    alert("Message sent successfully 🎉");
+    return false; // prevents reload
+}
+fetch("../backend/contact.php", {
+    method:"POST",
+    body:new FormData(contactForm)
+})
+.then(()=>alert("Message sent ✅"));
+</script>
+
+
+<script>
+    function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("show");
+}
+
+function toggleDropdown() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+</script>
+
+
+
+
+
+</body>
+</html>

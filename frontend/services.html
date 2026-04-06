@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeEase</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/services.css">
+       
+</head>
+<body>
+
+
+    <nav class="navbar">
+    <div class="logo">
+        <img src="pnglogo.png" alt="ServiceApp logo">
+        <h2>HomeEase</h2>
+    </div>
+
+    <!-- Hamburger -->
+    <div class="hamburger" onclick="toggleMenu()">
+        ☰
+    </div>
+
+    <div class="nav-right" id="navMenu">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+
+        <span id="username"></span>
+
+        <a href="dashboard.html">My Bookings</a>
+        <a href="contact.html">Contact</a>
+
+        <span class="material-icons icon" onclick="showNotification()">notifications</span>
+        <span class="material-icons icon" onclick="toggleDarkMode()">dark_mode</span>
+
+        <span class="material-icons profile-icon" onclick="toggleDropdown()">account_circle</span>
+
+        <div class="dropdown" id="dropdownMenu">
+            <a href="register.html">My Account</a>
+            <a href="setting.html">Settings</a>
+            <a href="logout.html">Logout</a>
+        </div>
+    </div>
+</nav>
+
+
+    <div class="main-wrapper">
+        <div class="left-side">
+            <h1>Our Services</h1>
+            <p>Select a service to find verified professionals near you in Chandigarh.</p>
+            
+            <div class="service-list">
+                <div class="service-item" onclick="loadProviders('Electrician')">
+                    <div class="icon-circle"><span class="material-icons">electrical_services</span></div>
+                    <div class="service-text">
+                        <h3>Electrician</h3>
+                        <p>Wiring, repairs, and installations.</p>
+                    </div>
+                </div>
+
+                <div class="service-item" onclick="loadProviders('Plumbing')">
+                    <div class="icon-circle"><span class="material-icons">plumbing</span></div>
+                    <div class="service-text">
+                        <h3>Plumbing</h3>
+                        <p>Pipe leaks and bathroom fittings.</p>
+                    </div>
+                </div>
+
+                <div class="service-item" onclick="loadProviders('Cleaning')">
+                    <div class="icon-circle"><span class="material-icons">cleaning_services</span></div>
+                    <div class="service-text">
+                        <h3>Cleaning</h3>
+                        <p>Deep house and sofa cleaning.</p>
+                    </div>
+                </div>
+
+                <div class="service-item" onclick="loadProviders('Carpenter')">
+                    <div class="icon-circle"><span class="material-icons">handyman</span></div>
+                    <div class="service-text">
+                        <h3>Carpenter</h3>
+                        <p>Furniture repair and woodwork.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-side">
+            <div class="glass-card" id="results-panel">
+                <div class="placeholder-text">
+                    <span class="material-icons" style="font-size: 50px; color: #ff9800;">location_on</span>
+                    <p style="margin-top: 10px;">Click a service on the left to see <br><strong>Available Service Providers</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer style="background:#0a2540; color:white; padding:40px;">
+
+    <div style="display:flex; justify-content:space-around; flex-wrap:wrap;">
+        
+        <div>
+            <h3>Company</h3>
+            <p>About Us</p>
+            <p>Careers</p>
+            <p>Terms & Conditions</p>
+        </div>
+
+        <div>
+            <h3>For Customers</h3>
+            <p>Services</p>
+            <p>Contact Us</p>
+        </div>
+
+        <div>
+            <h3>Support</h3>
+            <p>Help Center</p>
+            <p>Privacy Policy</p>
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- SCROLL BUTTON -->
+<button onclick="topFunction()" id="topBtn"
+style="position:fixed; bottom:20px; right:20px; padding:10px; display:none; background:orange; color:white; border:none; border-radius:50%;">
+↑
+</button>
+
+    <script>
+        // Database of nearby providers
+        const data = {
+            'Electrician': [
+                { name: 'Rahul Sharma', rating: '4.5', reviews: '120', price: '300', img: 'https://randomuser.me/api/portraits/men/32.jpg' },
+                { name: 'Amit Kumar', rating: '4.2', reviews: '90', price: '250', img: 'https://randomuser.me/api/portraits/men/44.jpg' }
+            ],
+            'Plumbing': [
+                { name: 'Sandeep Singh', rating: '4.8', reviews: '210', price: '400', img: 'https://randomuser.me/api/portraits/men/65.jpg' }
+            ],
+            'Cleaning': [
+                { name: 'Pooja Devi', rating: '4.7', reviews: '85', price: '500', img: 'https://randomuser.me/api/portraits/women/44.jpg' }
+            ],
+            'Carpenter': [
+                { name: 'Vikram Mistri', rating: '4.6', reviews: '150', price: '350', img: 'https://randomuser.me/api/portraits/men/22.jpg' }
+            ]
+        };
+
+        function loadProviders(service) {
+            const panel = document.getElementById('results-panel');
+            let content = `<h2 style="margin-bottom: 20px; color: #333;">Nearby ${service}s</h2>`;
+            
+            if (data[service]) {
+                data[service].forEach((p, index) => {
+                    content += `
+                        <div class="provider-card" style="animation-delay: ${index * 0.1}s">
+                            <img src="${p.img}" alt="provider">
+                            <div class="provider-info">
+                                <h4>${p.name}</h4>
+                                <p>⭐ ${p.rating} | ${p.reviews} Reviews</p>
+                                <p><strong>₹${p.price} / visit</strong></p>
+                            </div>
+                            <a href="service-details.html?provider=${encodeURIComponent(p.name)}" style="text-decoration:none;">
+                                <button class ="book-btn">Book Now</a>
+                            
+                        </div>
+                    `;
+                });
+            }
+            
+            panel.innerHTML = content;
+        }
+    </script>
+
+
+<script>
+    function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("show");
+}
+
+function toggleDropdown() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+</script>
+</body>
+</html>

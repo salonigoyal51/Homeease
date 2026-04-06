@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Service Booking</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
+    
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar -->
+
+<nav class="navbar">
+    <div class="logo">
+        <img src="pnglogo.png" alt="ServiceApp logo">
+        <h2>HomeEase</h2>
+    </div>
+
+    <!-- Hamburger -->
+    <div class="hamburger" onclick="toggleMenu()">
+        ☰
+    </div>
+
+    <div class="nav-right" id="navMenu">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+
+        <span id="username"></span>
+
+        <a href="dashboard.html">My Bookings</a>
+        <a href="contact.html">Contact</a>
+
+        <span class="material-icons icon" onclick="showNotification()">notifications</span>
+        <span class="material-icons icon" onclick="toggleDarkMode()">dark_mode</span>
+
+        <span class="material-icons profile-icon" onclick="toggleDropdown()">account_circle</span>
+
+        <div class="dropdown" id="dropdownMenu">
+            <a href="register.html">My Account</a>
+            <a href="setting.html">Settings</a>
+            <a href="logout.html">Logout</a>
+        </div>
+    </div>
+</nav>
+
+
+
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Book Trusted Home Services</h1>
+        <p>Electrician | Plumber | Cleaning | Carpenter</p>
+        <p class="description">
+            Get verified professionals at your doorstep with easy booking,transparent
+                 pricing, and top-rated services.
+        </p>
+        <div class="search-box">
+            <span class="material-icons">search</span>
+            <input type="text" id="search" placeholder="Search services...">
+            </div>
+            <button class="cta-btn">Book Now</button>
+        
+    </div>
+</section>
+
+<!-- Services -->
+<section class="services">
+    <section class ="services top-services scroll-animate"></section>
+    <h2>Top Services Near You</h2>
+<div class="services-wrapper">
+    <div class="cards">
+
+        <div class="card " data-name="electrician" onclick="showDetails('Electrician')">
+            <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=400">
+            <h3>Electrician</h3>
+        </div>
+
+        <div class="card" data-name="plumber" onclick="showDetails('Plumber')">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400">
+            <h3>Plumber</h3>
+        </div>
+
+        <div class="card" data-name="cleaning" onclick="showDetails('Cleaning')">
+            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400">
+            <h3>Cleaning</h3>
+        </div>
+
+        <div class="card" data-name="carpenter" onclick="showDetails('Carpenter')">
+            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400">
+            <h3>Carpenter</h3>
+        </div>
+</div>
+<div id="details-panel" class="details-panel">
+    <div class = "placeholder-text">
+        <p>Select a service to see details and pricing</p>
+    </div>
+</div>
+    </div>
+</section>
+<!-- ABOUT SECTION -->
+ <section class="faq-section">
+    <div class="faq-container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Find answers to common questions about our services.</p>
+
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>What is HomeEase Service Management System?</span>
+                    <span class="material-icons">expand_more</span>
+                </div>
+                <div class="faq-answer">
+                    <p>HomeEase is a digital platform used to list, manage, and book local services like electricians and plumbers. It helps users find verified professionals easily and allows providers to manage bookings efficiently.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>What details are required to book a service?</span>
+                    <span class="material-icons">expand_more</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Users need to provide: • Service Type • Location & Address • Preferred Date & Time • Specific requirements/issues. These details help professionals understand the job before arriving.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Can users schedule visits or site inspections?</span>
+                    <span class="material-icons">expand_more</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, users can schedule service visits by selecting a preferred date and time. This ensures that the professional arrives when you are available, avoiding any confusion.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Is the pricing transparent?</span>
+                    <span class="material-icons">expand_more</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we believe in transparency. You will see the estimated cost before booking, and final charges are based on the work performed, ensuring no hidden costs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- COUNTERS -->
+<section style="display:flex; justify-content:space-around; padding:40px; text-align:center; background-color: orange;">
+    
+    <div>
+        <h2 class="count" data-target="5000">0</h2>
+        <p>Happy Customers</p>
+    </div>
+
+    <div>
+        <h2 class="count" data-target="1200">0</h2>
+        <p>Professionals</p>
+    </div>
+
+    <div>
+        <h2 class="count" data-target="3000">0</h2>
+        <p>Bookings</p>
+    </div>
+
+</section>
+
+
+<!-- WHY CHOOSE US -->
+
+<section style="padding:60px; text-align:center; background:#f9f9f9;">
+    
+    <h2>About Us</h2>
+
+    <p style="max-width:800px; margin:auto; line-height:1.7;">
+        Welcome to <b>ServiceApp</b>, your trusted platform for booking home services. 
+        We connect you with verified professionals to ensure quality, safety, and reliability.
+    </p>
+
+    <p style="max-width:800px; margin:20px auto; line-height:1.7;">
+        From electricians and plumbers to cleaning and carpentry, we make booking simple 
+        and fast with transparent pricing and real-time service tracking.
+    </p>
+
+    <p style="max-width:800px; margin:auto; line-height:1.7;">
+        Our mission is to make your life easier by delivering top-rated services at your doorstep.
+    </p>
+
+    <!-- SMALL FEATURES -->
+    <div style="margin-top:30px; display:flex; justify-content:center; gap:40px;">
+        <div>✔ Trusted Experts</div>
+        <div>⚡ Fast Booking</div>
+        <div>💰 Affordable Prices</div>
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer style="background:#0a2540; color:white; padding:40px;">
+
+    <div style="display:flex; justify-content:space-around; flex-wrap:wrap;">
+        
+        <div>
+            <h3>Company</h3>
+            <p>About Us</p>
+            <p>Careers</p>
+            <p>Terms & Conditions</p>
+        </div>
+
+        <div>
+            <h3>For Customers</h3>
+            <p>Services</p>
+            <p>Contact Us</p>
+        </div>
+
+        <div>
+            <h3>Support</h3>
+            <p>Help Center</p>
+            <p>Privacy Policy</p>
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- SCROLL BUTTON -->
+<button onclick="topFunction()" id="topBtn"
+style="position:fixed; bottom:20px; right:20px; padding:10px; display:none; background:orange; color:white; border:none; border-radius:50%;">
+↑
+</button>
+
+
+<!-- JAVASCRIPT -->
+<script>
+
+// COUNTER ANIMATION
+document.querySelectorAll('.count').forEach(counter => {
+    let update = () => {
+        let target = +counter.getAttribute('data-target');
+        let count = +counter.innerText;
+        let increment = target / 100;
+
+        if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(update, 20);
+        } else {
+            counter.innerText = target;
+        }
+    };
+    update();
+});
+
+// SCROLL BUTTON
+let btn = document.getElementById("topBtn");
+
+window.onscroll = function() {
+    btn.style.display = window.scrollY > 200 ? "block" : "none";
+};
+
+function topFunction() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+</script>
+
+<script>
+    function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("show");
+}
+
+function toggleDropdown() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+</script>
+
+
+<script src="js/script.js">
+    
+const elements = document.querySelectorAll('.scroll-animate');
+
+function checkScroll() {
+    const triggerBottom = window.innerHeight * 0.85;
+
+    elements.forEach(el => {
+        const boxTop = el.getBoundingClientRect().top;
+
+        if (boxTop < triggerBottom) {
+            el.classList.add('show');
+        }
+    });
+}
+
+window.addEventListener('scroll', checkScroll);
+window.addEventListener('load', checkScroll);
+
+</script>
+
+
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/69d0d92599d6ad1c3af9c2bf/1jlbt0fa4';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<script>
+    function toggleFaq(element) {
+    const item = element.parentElement;
+    item.classList.toggle('active');
+}
+</script>
+<!--End of Tawk.to Script-->
+
+
+</body>
+</html>

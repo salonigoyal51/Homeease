@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - HomeEase</title>
+<link rel="stylesheet" href="css/login.css">
+<!-- Google Font -->
+ <link rel="stylesheet" href="css/style.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0a2540, #1e3c72);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container */
+.login-container {
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    width: 350px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    animation: fadeSlide 0.8s ease;
+}
+
+/* Animation */
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Title */
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #0a2540;
+}
+
+/* Inputs */
+.login-container input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.login-container input:focus {
+    border-color: #ff6b35;
+}
+
+/* Button */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background: #ff6b35;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    background: #e85a2a;
+}
+
+/* Links */
+.links {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.links a {
+    text-decoration: none;
+    color: #0a2540;
+    font-size: 14px;
+}
+
+.links a:hover {
+    color: #ff6b35;
+}
+
+/* Error Message */
+.error {
+    color: red;
+    font-size: 13px;
+    text-align: center;
+}
+</style>
+
+</head>
+
+<body>
+
+
+    <nav class="navbar">
+    <div class="logo">
+        <img src="pnglogo.png" alt="ServiceApp logo">
+        <h2>HomeEase</h2>
+    </div>
+
+    <!-- Hamburger -->
+    <div class="hamburger" onclick="toggleMenu()">
+        ☰
+    </div>
+
+    <div class="nav-right" id="navMenu">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+
+        <span id="username"></span>
+
+        <a href="dashboard.html">My Bookings</a>
+        <a href="contact.html">Contact</a>
+
+        <span class="material-icons icon" onclick="showNotification()">notifications</span>
+        <span class="material-icons icon" onclick="toggleDarkMode()">dark_mode</span>
+
+        <span class="material-icons profile-icon" onclick="toggleDropdown()">account_circle</span>
+
+        <div class="dropdown" id="dropdownMenu">
+            <a href="register.html">My Account</a>
+            <a href="setting.html">Settings</a>
+            <a href="logout.html">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="login-container">
+    <h2>Login to HomeEase</h2>
+
+    <form id="loginForm">
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+
+        <button type="submit" class="login-btn">Login</button>
+        <p class="error" id="errorMsg"></p>
+    </form>
+
+    <div class="links">
+        <a href="register.html">Create Account</a>
+    </div>
+</div>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    // Simple validation
+    if(email === "" || password === "") {
+        document.getElementById("errorMsg").innerText = "Please fill all fields";
+        return;
+    }
+
+    // TEMPORARY login (frontend only)
+    if(email === "admin@gmail.com" && password === "1234") {
+        alert("Login Successful!");
+        window.location.href = "dashboard.html"; // redirect
+    } else {
+        document.getElementById("errorMsg").innerText = "Invalid Email or Password";
+    }
+});
+</script>
+
+<script>
+    function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("show");
+}
+
+function toggleDropdown() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+</script>
+
+</body>
+</html>
