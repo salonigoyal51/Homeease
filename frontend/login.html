@@ -182,5 +182,16 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
 });
 </script>
 
+<script>
+    function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("show");
+}
+
+function toggleDropdown() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+</script>
+
 </body>
 </html>

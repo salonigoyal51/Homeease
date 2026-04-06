@@ -1,7 +1,7 @@
 
 /* Hero */
 .hero {
-    height: 90vh;
+    height: 100vh;
     min-height: 500px;
     background: url('https://images.unsplash.com/photo-1600585154526-990dced4db0d') no-repeat center/cover;
     display: flex;
@@ -25,10 +25,22 @@
     color: white;
     text-align: center;
     z-index: 2;
+    margin-top: 50px;
 }
 
 .hero h1 {
     font-size: 40px;
+
+
+}
+.hero p{
+    margin-top: 10px;
+}
+.material-icons{
+    margin-top: 15px;
+}
+.cta-btn{
+    margin-right:15px ;
 }
 .scroll-animate{
     opacity: 0;
@@ -102,8 +114,11 @@ img{
     transition: 0.3s ease;
     margin-left: 5px;
 }
-.ctn-btn:hover{
-    background-color: #e64a19;
+.cta-btn:hover{
+    background-color: transparent;
+    
+    border: #ff5722;
+    color: #ff5722;
     transform: scale(1.05);
 }
 /* Services */

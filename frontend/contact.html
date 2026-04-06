@@ -12,100 +12,7 @@
 
     <meta charset="UTF-8">
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: url('https://images.unsplash.com/photo-1521791136064-7986c2920216') no-repeat center/cover;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Navbar */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 30px;
-            background: rgba(0,0,0,0.6);
-            color: white;
-        }
-
-        .navbar a {
-            color: white;
-            margin-left: 15px;
-            text-decoration: none;
-        }
-
-        .navbar a:hover {
-            color: orange;
-        }
-
-        /* Contact Box */
-        .contact-box {
-            margin: auto;
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(15px);
-            padding: 40px;
-            border-radius: 15px;
-            width: 350px;
-            color: white;
-            text-align: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-            animation: fadeSlide 1s ease;
-        }
-
-        h2 {
-            margin-bottom: 10px;
-        }
-
-        /* Inputs */
-        .input-box {
-            margin: 10px 0;
-        }
-
-        .input-box input,
-        .input-box textarea {
-            width: 100%;
-            padding: 10px;
-            border-radius: 8px;
-            border: none;
-            outline: none;
-        }
-
-        textarea {
-            resize: none;
-            height: 80px;
-        }
-
-        /* Button */
-        button {
-            width: 100%;
-            padding: 12px;
-            background: orange;
-            border: none;
-            color: white;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background: #ff6600;
-        }
-
-        /* Animation */
-        @keyframes fadeSlide {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+    
 </head>
 
 <body>
@@ -167,6 +74,40 @@
     </form>
 </div>
 
+<footer style="background:#0a2540; color:white; padding:40px;">
+
+    <div style="display:flex; justify-content:space-around; flex-wrap:wrap;">
+        
+        <div>
+            <h3>Company</h3>
+            <p>About Us</p>
+            <p>Careers</p>
+            <p>Terms & Conditions</p>
+        </div>
+
+        <div>
+            <h3>For Customers</h3>
+            <p>Services</p>
+            <p>Contact Us</p>
+        </div>
+
+        <div>
+            <h3>Support</h3>
+            <p>Help Center</p>
+            <p>Privacy Policy</p>
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- SCROLL BUTTON -->
+<button onclick="topFunction()" id="topBtn"
+style="position:fixed; bottom:20px; right:20px; padding:10px; display:none; background:orange; color:white; border:none; border-radius:50%;">
+↑
+</button>
+
 <script>
 function sendMessage() {
     alert("Message sent successfully 🎉");
@@ -178,6 +119,22 @@ fetch("../backend/contact.php", {
 })
 .then(()=>alert("Message sent ✅"));
 </script>
+
+
+<script>
+    function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("show");
+}
+
+function toggleDropdown() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+</script>
+
+
+
+
 
 </body>
 </html>

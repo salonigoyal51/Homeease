@@ -203,7 +203,10 @@ img{
     margin-left: 5px;
 }
 .ctn-btn:hover{
-    background-color: #e64a19;
+    background-color:transparent;
+     backdrop-filter: blur(15px);
+     color: #ff5722;
+     border: #ff5722;
     transform: scale(1.05);
 }
 /* Services */
