@@ -1,20 +1,28 @@
+
 <?php
 session_start();
 include "config.php";
 
+if (!isset($_SESSION['user'])) {
+    echo json_encode([
+        "status" => "error",
+        "message" => "User not logged in"
+    ]);
+    exit();
+}
 
 $user = $_SESSION['user'];
-$service = $_POST['service'];
-$date = $_POST['date'];
-$time = $_POST['time'];
-$address = $_POST['address'];
+$service = $_POST['service'] ?? '';
+$date = $_POST['date'] ?? '';
+$time = $_POST['time'] ?? '';
+$address = $_POST['address'] ?? '';
 
-$sql = "INSERT INTO bookings (user,service,date,time,address)
-VALUES ('$user','$service','$date','$time','$address')";
+$stmt = $conn->prepare("INSERT INTO bookings (user, service, date, time, address) VALUES (?, ?, ?, ?, ?)");
+$stmt->bind_param("sssss", $user, $service, $date, $time, $address);
 
-if ($conn->query($sql)) {
-    echo "success";
+if ($stmt->execute()) {
+    echo json_encode(["status" => "success"]);
 } else {
-    echo "error";
+    echo json_encode(["status" => "error", "message" => $conn->error]);
 }
 ?>

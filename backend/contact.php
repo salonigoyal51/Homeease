@@ -5,8 +5,9 @@ $name = $_POST['name'];
 $email = $_POST['email'];
 $message = $_POST['message'];
 
-$conn->query("INSERT INTO contact (name,email,message)
-VALUES ('$name','$email','$message')");
+$stmt = $conn->prepare("INSERT INTO contact (name, email, message) VALUES (?, ?, ?)");
+$stmt->bind_param("sss", $name, $email, $message);
+$stmt->execute();
 
-echo "success";
+echo json_encode(["status" => "success"]);
 ?>

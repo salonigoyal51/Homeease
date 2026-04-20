@@ -158,7 +158,6 @@ body {
         <a href="register.html">Create Account</a>
     </div>
 </div>
-
 <script>
 document.getElementById("loginForm").addEventListener("submit", function(e) {
     e.preventDefault();
@@ -166,23 +165,53 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
 
-    // Simple validation
     if(email === "" || password === "") {
         document.getElementById("errorMsg").innerText = "Please fill all fields";
         return;
     }
 
-    // TEMPORARY login (frontend only)
-    if(email === "admin@gmail.com" && password === "1234") {
-        alert("Login Successful!");
-        window.location.href = "dashboard.html"; // redirect
-    } else {
-        document.getElementById("errorMsg").innerText = "Invalid Email or Password";
+    // ✅ Call backend PHP
+    fetch("/HomeEase/backend/login.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `email=${email}&password=${password}`
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.status === "success") {
+            alert("Login Successful!");
+
+            // optional: show name in navbar  
+            if(data.status==="success"){
+                localStorage.setItem("username",data.user);
+            alert("Login successful! ")
+                window.location.href = "dashboard.html";
+        } 
     }
+        else if(data.status === "invalid") {
+            document.getElementById("errorMsg").innerText = "Wrong Password";
+        } 
+        else {
+            document.getElementById("errorMsg").innerText = "User not found";
+        }
+    })
+    .catch(() => {
+        document.getElementById("errorMsg").innerText = "Server error";
+    });
 });
+
 </script>
 
 <script>
+    function showNotification() {
+    alert("No new notifications 🔔");
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+}
     function toggleMenu() {
     document.getElementById("navMenu").classList.toggle("show");
 }

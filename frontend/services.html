@@ -133,6 +133,13 @@ style="position:fixed; bottom:20px; right:20px; padding:10px; display:none; back
 </button>
 
     <script>
+        function showNotification() {
+    alert("No new notifications 🔔");
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+}
         // Database of nearby providers
         const data = {
             'Electrician': [
@@ -151,6 +158,9 @@ style="position:fixed; bottom:20px; right:20px; padding:10px; display:none; back
         };
 
         function loadProviders(service) {
+            
+              document.querySelectorAll('.service-item').forEach(item => item.classList.remove('active'));
+            event.currentTarget.classList.add('active');
             const panel = document.getElementById('results-panel');
             let content = `<h2 style="margin-bottom: 20px; color: #333;">Nearby ${service}s</h2>`;
             
@@ -164,8 +174,9 @@ style="position:fixed; bottom:20px; right:20px; padding:10px; display:none; back
                                 <p>⭐ ${p.rating} | ${p.reviews} Reviews</p>
                                 <p><strong>₹${p.price} / visit</strong></p>
                             </div>
-                            <a href="service-details.html?provider=${encodeURIComponent(p.name)}" style="text-decoration:none;">
-                                <button class ="book-btn">Book Now</a>
+                            <a href="service-details.html?type=${encodeURIComponent(service)}&provider=${encodeURIComponent(p.name)}" style="text-decoration:none;">
+                                <button class ="book-btn">Book Now</button>
+                                </a>
                             
                         </div>
                     `;
@@ -174,10 +185,12 @@ style="position:fixed; bottom:20px; right:20px; padding:10px; display:none; back
             
             panel.innerHTML = content;
         }
+        
     </script>
 
 
 <script>
+
     function toggleMenu() {
     document.getElementById("navMenu").classList.toggle("show");
 }

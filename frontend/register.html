@@ -123,7 +123,7 @@
     <h2>Create Account </h2>
     <p>Join us & book trusted services</p>
 
-    <form onsubmit="return validateForm()">
+    <form id="registerForm">
 
         <div class="input-box">
             <span class="material-icons">person</span>
@@ -154,43 +154,51 @@
     </div>
 </div>
 
-<script>
+ <script>
+document.addEventListener("DOMContentLoaded", function(){
+    document.getElementById("registerForm").addEventListener("submit", function(e){
+        e.preventDefault();
 
-document.getElementById("loginForm").onsubmit = function(e) {
-    e.preventDefault();
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+        let confirm = document.getElementById("confirm").value;
 
-    let formData = new FormData(this);
-
-    fetch("../backend/login.php", {
-        method: "POST",
-        body: formData
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.status === "success") {
-
-            // ✅ store login
-            localStorage.setItem("user", data.user);
-
-            window.location.href = "dashboard.html";
-
-        } else {
-            alert("Invalid credentials ❌");
+        if(password !== confirm){
+            document.getElementById("errorMsg").innerText = "Passwords do not match";
+            return;
         }
-    });
-};
-fetch("../backend/login.php", {
-    method:"POST",
-    body:new FormData(loginForm)
-})
-.then(res=>res.json())
-.then(data=>{
-    if(data.status==="success"){
-        localStorage.setItem("user", data.user);
-        window.location.href="dashboard.html";
-    }
-});
-</script>
 
+        fetch("/HomeEase/backend/register.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.status === "success"){
+                alert("Account Created Successfully!");
+                window.location.href = "login.html";
+            } else if(data.status === "exists"){
+                document.getElementById("errorMsg").innerText = "Email already registered. Please login.";
+            } else {
+                document.getElementById("errorMsg").innerText = "Error creating account";
+            }
+        })
+        .catch(() => {
+            document.getElementById("errorMsg").innerText = "Server error";
+        });
+    });
+});
+function showNotification() {
+    alert("No new notifications 🔔");
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+}
+</script>
 </body>
 </html>

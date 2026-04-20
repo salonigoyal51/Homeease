@@ -201,13 +201,20 @@ style="position:fixed; bottom:20px; right:20px; padding:10px; display:none; back
 </button>
 
 <script>
+fetch("/HomeEase/backend/check_auth.php")
+.then(res=>res.json())
+.then(data=>{
+    if(data.status!=="logged_in"){
+        alert("Please login first");
+        window.location.href="login.html";
+    }
+});
+function showNotification() {
+    alert("No new notifications 🔔");
+}
 
-// 🔐 Check login
-let user = localStorage.getItem("user");
-
-if (!user) {
-    alert("Please login first 🔐");
-    window.location.href = "login.html";
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
 }
 
 // 📦 Submit booking
@@ -216,13 +223,13 @@ document.getElementById("bookingForm").onsubmit = function(e) {
 
     let formData = new FormData(this);
 
-    fetch("../backend/book_service.php", {
+    fetch("/HomeEase/backend/book_service.php", {
         method: "POST",
         body: formData
     })
-    .then(res => res.text())
+    .then(res => res.json())
     .then(data => {
-        if (data === "success") {
+        if (data.status === "success") {
             alert("Booking successful ✅");
             window.location.href = "dashboard.html";
         } else {

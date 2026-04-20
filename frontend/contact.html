@@ -91,7 +91,13 @@ window.onscroll = function() {
         btn.style.display = "none";
     }
 };
+function showNotification() {
+    alert("No new notifications 🔔");
+}
 
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+}
 function topFunction() {
     document.documentElement.scrollTop = 0;
 }
@@ -105,7 +111,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
 
     let formData = new FormData(this);
 
-    fetch("../backend/contact.php", {
+    fetch("/HomeEase/backend/contact.php", {
         method: "POST",
         body: formData
     })
@@ -126,6 +132,13 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
 
 
 <script>
+    function showNotification() {
+    alert("No new notifications 🔔");
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+}
     function toggleMenu() {
     document.getElementById("navMenu").classList.toggle("show");
 }

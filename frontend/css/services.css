@@ -57,7 +57,11 @@
             border-color: #ff9800;
             transform: translateX(10px);
         }
-
+.service-item.active {
+    background: #fff5e6;
+    border-color: #ff9800;
+    transform: translateX(10px);
+}
         .icon-circle {
             width: 55px;
             height: 55px;

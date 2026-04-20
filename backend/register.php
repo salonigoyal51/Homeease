@@ -1,3 +1,4 @@
+// ✅ Replace register.php with this:
 <?php
 include "config.php";
 
@@ -5,12 +6,23 @@ $name = $_POST['name'];
 $email = $_POST['email'];
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-$sql = "INSERT INTO users (name, email, password)
-VALUES ('$name','$email','$password')";
+// Check if email already exists
+$check = $conn->prepare("SELECT id FROM users WHERE email = ?");
+$check->bind_param("s", $email);
+$check->execute();
+$check->store_result();
 
-if ($conn->query($sql)) {
-    echo "success";
+if ($check->num_rows > 0) {
+    echo json_encode(["status" => "exists"]);
+    exit();
+}
+
+$stmt = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
+$stmt->bind_param("sss", $name, $email, $password);
+
+if ($stmt->execute()) {
+    echo json_encode(["status" => "success"]);
 } else {
-    echo "error";
+    echo json_encode(["status" => "error"]);
 }
 ?>

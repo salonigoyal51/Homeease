@@ -70,6 +70,7 @@
 <!-- Services -->
 <section class="services">
     <section class ="services top-services scroll-animate"></section>
+    <!-- <section class ="services top-services scroll-animate"></section> -->
     <h2>Top Services Near You</h2>
 <div class="services-wrapper">
     <div class="cards">
@@ -94,44 +95,65 @@
             <h3>Carpenter</h3>
         </div>
 </div>
-<div id="details-panel" class="details-panel">
-    <div class = "placeholder-text">
-        <p>Select a service to see details and pricing</p>
+
     </div>
-</div>
-    </div>
+    
 </section>
 <!-- ABOUT SECTION -->
-<section style="padding:60px; text-align:center; background:#f9f9f9;">
-    
-    <h2>About Us</h2>
+ <section class="faq-section">
+    <div class="faq-container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Find answers to common questions about our services.</p>
 
-    <p style="max-width:800px; margin:auto; line-height:1.7;">
-        Welcome to <b>ServiceApp</b>, your trusted platform for booking home services. 
-        We connect you with verified professionals to ensure quality, safety, and reliability.
-    </p>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>What is HomeEase Service Management System?</span>
+                    <span class="material-icons">expand_more</span>
+                </div>
+                <div class="faq-answer">
+                    <p>HomeEase is a digital platform used to list, manage, and book local services like electricians and plumbers. It helps users find verified professionals easily and allows providers to manage bookings efficiently.</p>
+                </div>
+            </div>
 
-    <p style="max-width:800px; margin:20px auto; line-height:1.7;">
-        From electricians and plumbers to cleaning and carpentry, we make booking simple 
-        and fast with transparent pricing and real-time service tracking.
-    </p>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>What details are required to book a service?</span>
+                    <span class="material-icons">expand_more</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Users need to provide: • Service Type • Location & Address • Preferred Date & Time • Specific requirements/issues. These details help professionals understand the job before arriving.</p>
+                </div>
+            </div>
 
-    <p style="max-width:800px; margin:auto; line-height:1.7;">
-        Our mission is to make your life easier by delivering top-rated services at your doorstep.
-    </p>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Can users schedule visits or site inspections?</span>
+                    <span class="material-icons">expand_more</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, users can schedule service visits by selecting a preferred date and time. This ensures that the professional arrives when you are available, avoiding any confusion.</p>
+                </div>
+            </div>
 
-    <!-- SMALL FEATURES -->
-    <div style="margin-top:30px; display:flex; justify-content:center; gap:40px;">
-        <div>✔ Trusted Experts</div>
-        <div>⚡ Fast Booking</div>
-        <div>💰 Affordable Prices</div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Is the pricing transparent?</span>
+                    <span class="material-icons">expand_more</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we believe in transparency. You will see the estimated cost before booking, and final charges are based on the work performed, ensuring no hidden costs.</p>
+                </div>
+            </div>
+        </div>
     </div>
-
 </section>
+
+
 
 
 <!-- COUNTERS -->
-<section style="display:flex; justify-content:space-around; padding:40px; text-align:center;">
+<section style="display:flex; justify-content:space-around; padding:40px; text-align:center; background-color: orange;">
     
     <div>
         <h2 class="count" data-target="5000">0</h2>
@@ -152,13 +174,46 @@
 
 
 <!-- WHY CHOOSE US -->
-<section style="padding:50px; text-align:center;">
-    <h2>Why Choose Us</h2>
 
-    <div style="display:flex; justify-content:center; gap:40px; margin-top:30px;">
-        <div>✔ Verified Professionals</div>
-        <div>⏱ On-Time Service</div>
-        <div>⭐ Top Rated</div>
+<section class="about-section">
+    <div class="about-container">
+
+        <h2 class="about-title">About Us</h2>
+
+        <p class="about-text">
+            Welcome to <span>ServiceApp</span>, your trusted platform for booking home services.
+            We connect you with verified professionals to ensure quality, safety, and reliability.
+        </p>
+
+        <p class="about-text">
+            From electricians and plumbers to cleaning and carpentry, we make booking simple 
+            and fast with transparent pricing and real-time service tracking.
+        </p>
+
+        <p class="about-text">
+            Our mission is to make your life easier by delivering top-rated services at your doorstep.
+        </p>
+
+        <!-- FEATURES -->
+        <div class="about-features">
+
+            <div class="feature-box">
+                <span>✔</span>
+                <h4>Trusted Experts</h4>
+            </div>
+
+            <div class="feature-box">
+                <span>⚡</span>
+                <h4>Fast Booking</h4>
+            </div>
+
+            <div class="feature-box">
+                <span>💰</span>
+                <h4>Affordable Prices</h4>
+            </div>
+
+        </div>
+
     </div>
 </section>
 
@@ -234,7 +289,10 @@ function topFunction() {
     function toggleMenu() {
     document.getElementById("navMenu").classList.toggle("show");
 }
-
+function toggleFaq(element) {
+    const item = element.parentElement;
+    item.classList.toggle('active');
+}
 function toggleDropdown() {
     const menu = document.getElementById("dropdownMenu");
     menu.style.display = menu.style.display === "block" ? "none" : "block";
@@ -260,7 +318,13 @@ function checkScroll() {
 
 window.addEventListener('scroll', checkScroll);
 window.addEventListener('load', checkScroll);
+function showNotification() {
+    alert("No new notifications 🔔");
+}
 
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+}
 </script>
 
 
